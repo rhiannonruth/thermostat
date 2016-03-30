@@ -1,10 +1,11 @@
 'use strict';
 
 function Thermostat() {
-  this._temperature = 20;
   this.MINIMUM_TEMPERATURE = 10;
   this._powerSavingMode = true;
-  this.setMaxTemp()
+  this.DEFAULT_TEMPERATURE = 20;
+  this._temperature = this.DEFAULT_TEMPERATURE;
+  this.setMaxTemp();
 }
 
 Thermostat.prototype.temperature = function() {
@@ -40,4 +41,18 @@ Thermostat.prototype.powerSavingSwitch = function() {
 
 Thermostat.prototype.setMaxTemp = function() {
   this._powerSavingMode ? this.MAXIMUM_TEMPERATURE = 25 : this.MAXIMUM_TEMPERATURE = 32;
+}
+
+Thermostat.prototype.reset = function() {
+  this._temperature = this.DEFAULT_TEMPERATURE
+}
+
+Thermostat.prototype.color = function() {
+  if (this._temperature < 18){
+    return 'green'
+  };
+  if (this._temperature < 25){
+    return 'yellow'
+  };
+  return 'red';
 }

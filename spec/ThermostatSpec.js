@@ -45,8 +45,8 @@ describe('Thermostat', function() {
     });
   });
 
-  describe('power saving mode', function(){
-    it('switching changes maximum temperature', function(){
+  describe('power saving mode', function() {
+    it('switching changes maximum temperature', function() {
       expect(thermostat.MAXIMUM_TEMPERATURE).toEqual(25);
       thermostat.powerSavingSwitch();
       expect(thermostat.MAXIMUM_TEMPERATURE).toEqual(32);
@@ -55,4 +55,26 @@ describe('Thermostat', function() {
     });
   });
 
+  describe('reset button', function() {
+    it('sets temperature to 20', function() {
+      for (var i = 1; i <= 5; i++) {
+        thermostat.up();
+      };
+      thermostat.reset();
+      expect(thermostat.temperature()).toEqual(20)
+    });
+  });
+
+ describe('energy usage', function() {
+   it('is yellow when temp is between 19 and 24', function() {
+     expect(thermostat.color()).toEqual('yellow');
+   });
+
+   it('is green when temp below 18', function() {
+     for (var i = 1; i <= 10; i++) {
+       thermostat.down();
+     };
+     expect(thermostat.color()).toEqual('green');
+   });
+ });
 });
