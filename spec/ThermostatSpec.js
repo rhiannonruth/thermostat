@@ -76,5 +76,12 @@ describe('Thermostat', function() {
      };
      expect(thermostat.color()).toEqual('green');
    });
+
+   it('is green when temp above 25', function() {
+     for (var i = 1; i <= 5; i++) {
+       thermostat.up();
+     };
+     expect(thermostat.color()).toEqual('red');
+   });
  });
 });
