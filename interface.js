@@ -1,20 +1,22 @@
+"use strict".
+
 $(document).ready(function(){
   var thermostat = new Thermostat();
-  updateTemperature()
+  updateTemperature();
 
   $('#temperature-up').click(function() {
     thermostat.up();
-    updateTemperature()
+    updateTemperature();
   });
 
   $('#temperature-down').click(function() {
     thermostat.down();
-    updateTemperature()
+    updateTemperature();
   });
 
   $('#temperature-reset').click(function() {
     thermostat.reset();
-    updateTemperature()
+    updateTemperature();
   });
 
   $('#powersaving-switch').click(function() {
@@ -24,12 +26,12 @@ $(document).ready(function(){
     }
     else {
       $('#power-saving-status').text('on');
-    };
+    }
   });
 
   function updateTemperature() {
   $('#temperature').text(thermostat._temperature);
-  };
+  }
 
   $("#weather-submit").click(function(e){
     e.preventDefault();
@@ -45,6 +47,5 @@ $(document).ready(function(){
       $('#weather').text('Weather in ' + data.name + ': ' + data.main.temp);
     });
   }
-
 
 });

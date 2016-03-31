@@ -21,7 +21,7 @@ describe('Thermostat', function() {
     it('raises error when trying to go above max temp', function() {
       for (var i = 1; i <= 5; i++) {
         thermostat.up();
-      };
+      }
       expect(function(){
         thermostat.up();
       }).toThrowError('too damn hot!');
@@ -38,7 +38,7 @@ describe('Thermostat', function() {
     it('raises error when tries to go below min temp', function() {
       for (var i = 1; i <= 10; i++) {
         thermostat.down();
-      };
+      }
       expect(function() {
         thermostat.down();
       }).toThrowError('too damn cold!');
@@ -62,9 +62,9 @@ describe('Thermostat', function() {
     it('sets temperature to 20', function() {
       for (var i = 1; i <= 5; i++) {
         thermostat.up();
-      };
+      }
       thermostat.reset();
-      expect(thermostat.temperature()).toEqual(20)
+      expect(thermostat.temperature()).toEqual(20);
     });
   });
 
@@ -76,14 +76,14 @@ describe('Thermostat', function() {
    it('is green when temp below 18', function() {
      for (var i = 1; i <= 10; i++) {
        thermostat.down();
-     };
+     }
      expect(thermostat.energyUsage()).toEqual('low');
    });
 
    it('is green when temp above 25', function() {
      for (var i = 1; i <= 5; i++) {
        thermostat.up();
-     };
+     }
      expect(thermostat.energyUsage()).toEqual('high');
    });
  });
