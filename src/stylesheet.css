@@ -1,0 +1,22 @@
+body {
+  background-color: lightblue;
+}
+
+.container {
+  position: relative;
+  top: 50%;
+  transform: translateY(150%);
+  text-align: center;
+}
+
+.low-usage {
+  color: green;
+}
+
+.med-usage {
+  color: yellow;
+}
+
+.high-usage {
+  color: red;
+}

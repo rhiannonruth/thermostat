@@ -1,4 +1,4 @@
-"use strict".
+"use strict"
 
 $(document).ready(function() {
   var thermostat = new Thermostat();
@@ -30,7 +30,14 @@ $(document).ready(function() {
 
   function updateTemperature() {
     $('#temperature').text(thermostat._temperature);
-  }
+    if (thermostat.energyUsage() === 'low') {
+      $('#temperature').removeClass($('#temperature').attr('class')).addClass('low-usage');
+    } else if (thermostat.energyUsage() === 'medium') {
+      $('#temperature').removeClass($('#temperature').attr('class')).addClass('med-usage');
+    } else {
+      $('#temperature').removeClass($('#temperature').attr('class')).addClass('high-usage');
+    };
+  };
 
   $("#weather-submit").click(function(e) {
     e.preventDefault();

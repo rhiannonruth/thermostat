@@ -2,29 +2,34 @@
 <html>
   <head>
     <title>Thermostat</title>
+    <link rel="stylesheet" href="src/stylesheet.css" type="text/stylesheet">
     <script src="jquery.js"></script>
     <script src="src/thermostat.js"></script>
     <script src="interface.js"></script>
   </head>
   <body>
-    <section>
-      <h1 id="temperature"></h1>
-      <p>
-        <button id="temperature-up">+</button>
-        <button id="temperature-down">-</button>
-        <button id="temperature-reset">reset</button>
-        power saving mode is <span id="power-saving-status">on</span>
-        <button id="powersaving-switch">PSM</button>
-      </p>
-    </section>
-    <form>
-      <label for='city'> City:
-        <input name='city' type='text' placeholder='London'>
-      </label>
-      <input type='submit' id='weather-submit'>
-    </form>
+    <div class='container'>
+      <div id='display'>
+        <h1 id="temperature" class="med-usage"></h1>
+      </div>
+        <section>
+        <p>
+          <button id="temperature-up">+</button>
+          <button id="temperature-down">-</button>
+          <button id="temperature-reset">reset</button>
+          power saving mode is <span id="power-saving-status">on</span>
+          <button id="powersaving-switch">PSM</button>
+        </p>
+      </section>
+      <form>
+        <label for='city'> City:
+          <input name='city' type='text' placeholder='London'>
+        </label>
+        <input type='submit' id='weather-submit'>
+      </form>
 
-    <div id="weather">
+      <div id="weather">
+      </div>
     </div>
   </body>
 </html>
