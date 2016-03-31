@@ -4,15 +4,15 @@ $(document).ready(function() {
   var thermostat = new Thermostat();
   // updateTemperature();
 
-  $('#temperature-up').click(function() {
-    thermostat.up();
-    // updateTemperature();
-  });
-
-  $('#temperature-down').click(function() {
-    thermostat.down();
-    // updateTemperature();
-  });
+  // $('#temperature-up').click(function() {
+  //   thermostat.up();
+  //   // updateTemperature();
+  // });
+  //
+  // $('#temperature-down').click(function() {
+  //   thermostat.down();
+  //   // updateTemperature();
+  // });
 
   $('#temperature-reset').click(function() {
     thermostat.reset();
@@ -53,22 +53,22 @@ $(document).ready(function() {
     var token = "&appid=a2f6ade05ee1433ae21b182c6848bfe4";
     var units = "&units=metric";
     $.get(url + token + units, function(data) {
-      $('#weather').text('Weather in ' + data.name + ': ' + data.main.temp);
+      $('#weather').text('Weather in ' + data.name + ': ' + data.main.temp + '\u00B0C');
     });
   }
 
   // slider
 
 $("#slider").roundSlider({
-    radius: 80,
-    width: 14,
+    radius: 200,
+    width: 50,
     max: 50,
     startAngle: 330,
     handleSize: "+8",
     handleShape: "dot",
     sliderType: "min-range",
     value: 20,
-    change: updateTemp
+    drag: updateTemp
 });
 
 function updateTemp(e) {
@@ -93,11 +93,11 @@ function updateSlider() {
   // slider styling
 function updateColor() {
   if (thermostat.energyUsage() === 'low') {
-    $('#slider .rs-border').css('background-color','green');
+    $('#slider .rs-border').css('background-color','#FFC48F');
   } else if (thermostat.energyUsage() === 'medium') {
-    $('#slider .rs-border').css('background-color','yellow');
+    $('#slider .rs-border').css('background-color','#FFA04C');
   } else {
-    $('#slider .rs-border').css('background-color','red');
+    $('#slider .rs-border').css('background-color','#E98125');
   }
 };
 

@@ -1,5 +1,5 @@
 body {
-  background-color: lightblue;
+  background-color: #ADE8ED;
   font-family: 'Montserrat';
 }
 
@@ -42,13 +42,23 @@ h1 {
 }
 
 #slider .rs-range-color {
-  background-color: #ff8d00;
-}
-
-#slider .rs-handle:after {
-  background-color: #000000;
+  background-color: #18848E;
 }
 
 #slider .rs-border{
-  background-color: yellow;
+  background-color: #FFA04C;
+}
+
+#slider .rs-path-color  {
+    background-color: #18848E;
+    border-radius: 0;
+}
+
+#slider .rs-handle-dot:after {
+    background-color: #18848E;
+}
+
+.rs-tooltip-text{
+    font-size: 1000% !important;
+    font-family: 'Montserrat';
 }
