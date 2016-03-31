@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 $(document).ready(function() {
   var thermostat = new Thermostat();
@@ -22,10 +22,11 @@ $(document).ready(function() {
   $('#powersaving-switch').click(function() {
     thermostat.powerSavingSwitch();
     if (thermostat._powerSavingMode === false) {
-      $('#power-saving-status').text('off');
+      $('#power-saving-status').text('off')
     } else {
-      $('#power-saving-status').text('on');
+      $('#power-saving-status').text('on')
     }
+    updateTemperature();
   });
 
   function updateTemperature() {
