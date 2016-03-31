@@ -55,4 +55,22 @@ $(document).ready(function() {
     });
   }
 
+$("#slider").roundSlider({
+    radius: 80,
+    width: 14,
+    handleSize: "+8",
+    handleShape: "dot",
+    sliderType: "min-range",
+    value: thermostat._temperature,
+    change: updateTemp
+});
+
+function updateTemp(e) {
+  thermostat._temperature = e.value;
+  updateTemperature();
+  console.log(e.type);
+}
+
+
+
 });

@@ -34,3 +34,17 @@ h1 {
   font-size: 1000%;
   margin: 0;
 }
+
+/* slider styling */
+
+#slider .rs-range-color {
+  background-color: #ff8d00;
+}
+
+#slider .rs-handle:after {
+  background-color: #000000;
+}
+
+#slider .rs-border{
+  background-color: #ff8d00;
+}
