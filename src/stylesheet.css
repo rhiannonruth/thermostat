@@ -1,12 +1,21 @@
 body {
   background-color: lightblue;
+  font-family: 'Montserrat';
 }
 
 .container {
-  position: relative;
+  /*position: relative;
   top: 50%;
-  transform: translateY(150%);
+  transform: translateY(150%);*/
+
   text-align: center;
+  height: 300px;
+  width: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -150px;
+  margin-left: -250px;
 }
 
 .low-usage {
@@ -19,4 +28,9 @@ body {
 
 .high-usage {
   color: red;
+}
+
+h1 {
+  font-size: 1000%;
+  margin: 0;
 }

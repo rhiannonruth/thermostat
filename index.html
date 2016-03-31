@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Thermostat</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="src/stylesheet.css" type="text/stylesheet">
     <script src="jquery.js"></script>
     <script src="src/thermostat.js"></script>
@@ -11,13 +12,13 @@
     <div class='container'>
       <div id='display'>
         <h1 id="temperature" class="med-usage"></h1>
-      </div>
+        <p>power saving mode is <span id="power-saving-status">on</span></p>
+    </div>
         <section>
         <p>
           <button id="temperature-up">+</button>
           <button id="temperature-down">-</button>
           <button id="temperature-reset">reset</button>
-          power saving mode is <span id="power-saving-status">on</span>
           <button id="powersaving-switch">PSM</button>
         </p>
       </section>

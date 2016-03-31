@@ -22,9 +22,9 @@ $(document).ready(function() {
   $('#powersaving-switch').click(function() {
     thermostat.powerSavingSwitch();
     if (thermostat._powerSavingMode === false) {
-      $('#power-saving-status').text('off')
+      $('#power-saving-status').text('off');
     } else {
-      $('#power-saving-status').text('on')
+      $('#power-saving-status').text('on');
     }
     updateTemperature();
   });
@@ -37,7 +37,7 @@ $(document).ready(function() {
       $('#temperature').removeClass($('#temperature').attr('class')).addClass('med-usage');
     } else {
       $('#temperature').removeClass($('#temperature').attr('class')).addClass('high-usage');
-    };
+    }
   };
 
   $("#weather-submit").click(function(e) {
