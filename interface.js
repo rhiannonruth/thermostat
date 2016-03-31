@@ -1,19 +1,36 @@
 $(document).ready(function(){
   var thermostat = new Thermostat();
-  $('#temperature').text(thermostat._temperature);
-  $('#up').click(function() {
+  updateTemperature()
+
+  $('#temperature-up').click(function() {
     thermostat.up();
-  $('#temperature').text(thermostat._temperature);
+    updateTemperature()
   });
-  $('#down').click(function() {
+
+  $('#temperature-down').click(function() {
     thermostat.down();
-  $('#temperature').text(thermostat._temperature);
+    updateTemperature()
   });
-  $('#reset').click(function() {
+
+  $('#temperature-reset').click(function() {
     thermostat.reset();
-  $('#temperature').text(thermostat._temperature);
+    updateTemperature()
   });
-  $('#energySavingButton').click(function() {
+
+  $('#powersaving-switch').click(function() {
     thermostat.powerSavingSwitch();
+    if (thermostat._powerSavingMode === false){
+      $('#power-saving-status').text('off');
+    }
+    else {
+      $('#power-saving-status').text('on');
+    };
   });
+
+  function updateTemperature() {
+  $('#temperature').text(thermostat._temperature);
+  };
+
+
+
 });

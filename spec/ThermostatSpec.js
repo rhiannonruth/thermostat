@@ -70,21 +70,21 @@ describe('Thermostat', function() {
 
  describe('energy usage', function() {
    it('is yellow when temp is between 19 and 24', function() {
-     expect(thermostat.color()).toEqual('yellow');
+     expect(thermostat.energyUsage()).toEqual('medium');
    });
 
    it('is green when temp below 18', function() {
      for (var i = 1; i <= 10; i++) {
        thermostat.down();
      };
-     expect(thermostat.color()).toEqual('green');
+     expect(thermostat.energyUsage()).toEqual('low');
    });
 
    it('is green when temp above 25', function() {
      for (var i = 1; i <= 5; i++) {
        thermostat.up();
      };
-     expect(thermostat.color()).toEqual('red');
+     expect(thermostat.energyUsage()).toEqual('high');
    });
  });
 });
