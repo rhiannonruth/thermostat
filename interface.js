@@ -2,21 +2,22 @@
 
 $(document).ready(function() {
   var thermostat = new Thermostat();
-  updateTemperature();
+  // updateTemperature();
 
   $('#temperature-up').click(function() {
     thermostat.up();
-    updateTemperature();
+    // updateTemperature();
   });
 
   $('#temperature-down').click(function() {
     thermostat.down();
-    updateTemperature();
+    // updateTemperature();
   });
 
   $('#temperature-reset').click(function() {
     thermostat.reset();
-    updateTemperature();
+    // updateTemperature();
+    updateSlider();
   });
 
   $('#powersaving-switch').click(function() {
@@ -26,19 +27,20 @@ $(document).ready(function() {
     } else {
       $('#power-saving-status').text('on');
     }
-    updateTemperature();
+    // updateTemperature();
+    updateSlider();
   });
 
-  function updateTemperature() {
-    $('#temperature').text(thermostat._temperature);
-    if (thermostat.energyUsage() === 'low') {
-      $('#temperature').removeClass($('#temperature').attr('class')).addClass('low-usage');
-    } else if (thermostat.energyUsage() === 'medium') {
-      $('#temperature').removeClass($('#temperature').attr('class')).addClass('med-usage');
-    } else {
-      $('#temperature').removeClass($('#temperature').attr('class')).addClass('high-usage');
-    }
-  };
+  // function updateTemperature() {
+  //   $('#temperature').text(thermostat._temperature);
+  //   if (thermostat.energyUsage() === 'low') {
+  //     $('#temperature').removeClass($('#temperature').attr('class')).addClass('low-usage');
+  //   } else if (thermostat.energyUsage() === 'medium') {
+  //     $('#temperature').removeClass($('#temperature').attr('class')).addClass('med-usage');
+  //   } else {
+  //     $('#temperature').removeClass($('#temperature').attr('class')).addClass('high-usage');
+  //   }
+  // };
 
   $("#weather-submit").click(function(e) {
     e.preventDefault();
@@ -55,22 +57,49 @@ $(document).ready(function() {
     });
   }
 
+  // slider
+
 $("#slider").roundSlider({
     radius: 80,
     width: 14,
+    max: 50,
+    startAngle: 330,
     handleSize: "+8",
     handleShape: "dot",
     sliderType: "min-range",
-    value: thermostat._temperature,
+    value: 20,
     change: updateTemp
 });
 
 function updateTemp(e) {
-  thermostat._temperature = e.value;
-  updateTemperature();
-  console.log(e.type);
+  if (e.value >= thermostat.MAXIMUM_TEMPERATURE) {
+    thermostat._temperature = thermostat.MAXIMUM_TEMPERATURE;
+  } else if (e.value < 10) {
+    thermostat._temperature = thermostat.MINIMUM_TEMPERATURE;
+  } else {
+    thermostat._temperature = e.value;
+  };
+  // updateTemperature();
+  console.log(thermostat._temperature);
+  console.log(thermostat.energyUsage());
+  updateSlider();
+  updateColor();
 }
 
+function updateSlider() {
+  $('#slider').roundSlider("option", "value", thermostat._temperature);
+};
+
+  // slider styling
+function updateColor() {
+  if (thermostat.energyUsage() === 'low') {
+    $('#slider .rs-border').css('background-color','green');
+  } else if (thermostat.energyUsage() === 'medium') {
+    $('#slider .rs-border').css('background-color','yellow');
+  } else {
+    $('#slider .rs-border').css('background-color','red');
+  }
+};
 
 
 });
