@@ -53,6 +53,9 @@ describe('Thermostat', function() {
       thermostat.powerSavingSwitch();
       expect(thermostat.MAXIMUM_TEMPERATURE).toEqual(25);
     });
+    it('has power saving mode on by default', function() {
+      expect(thermostat.isPowerSavingModeOn()).toBe(true);
+    });
   });
 
   describe('reset button', function() {
