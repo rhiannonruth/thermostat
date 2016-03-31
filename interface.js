@@ -101,5 +101,7 @@ function updateColor() {
   }
 };
 
+$('input[type=submit]').hide();
+
 
 });
