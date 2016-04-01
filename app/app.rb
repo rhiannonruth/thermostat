@@ -1,11 +1,12 @@
 require 'sinatra/base'
 require 'json'
 require_relative 'data_mapper_setup'
+require_relative 'data_mapper_setup'
 
 class Thermostat < Sinatra::Base
 
-  enable :sessions
-  set :session_secret, 'super secret'
+  # enable :sessions
+  # set :session_secret, 'super secret'
 
   # get '/' do
   #   'Hello Thermostat!'
@@ -24,21 +25,21 @@ class Thermostat < Sinatra::Base
   #   "all good"
   # end
 
-  get '/dummytemp' do
-    headers 'Access-Control-Allow-Origin' => '*'
-    {userinfo: {temp: $temp, city: $city}}.to_json
+  get '/info' do
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    @thermostat = ThermostatInfo.first
+    @thermostat = ThermostatInfo.create(temperature: params[:temperature], city: params[:city]) if @thermostat.nil?
+    {userinfo: {temp: @thermostat.temperature, city: @thermostat.city}}.to_json
   end
 
-  post '/dummytemp' do
-    p params[:temperature]
-    $temp = params[:temperature]
-    p $temp
+  post '/temp' do
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    ThermostatInfo.first.update(temperature: params[:temperature])
   end
 
-  post '/dummycity' do
-    p params[:city]
-    $city = params[:city]
-    p $city
+  post '/city' do
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    ThermostatInfo.first.update(temperature: params[:temperature], city: params[:city])
   end
 
   # start the server if ruby file executed directly

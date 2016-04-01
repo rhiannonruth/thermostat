@@ -49,20 +49,20 @@ $(document).ready(function() {
     e.preventDefault();
     var city = $('input[name="city"]').val();
     displayWeather(city);
-    $.post('http://localhost:4567/dummycity?&city='+city, function(data){
+    $.post('http://localhost:4567/city?&city='+city+'&temperature='+ thermostat._temperature, function(data){
     });
   });
 
 
   function getTemp(){
-    $.getJSON('http://localhost:4567/dummytemp', function(data){
+    $.getJSON('http://localhost:4567/info', function(data){
       $("#slider").roundSlider("option", "value", data.userinfo.temp);
       thermostat._temperature = data.userinfo.temp;
     });
   }
 
   function getCity(){
-    $.getJSON('http://localhost:4567/dummytemp', function(data){
+    $.getJSON('http://localhost:4567/info', function(data){
       $('.city').val(data.userinfo.city);
       if (data.userinfo.city != undefined){
         $('#weather-submit').click()
@@ -107,7 +107,7 @@ function updateTemp(e) {
   // console.log(thermostat.energyUsage());
   updateSlider();
   updateColor();
-  $.post('http://localhost:4567/dummytemp?temperature='+thermostat._temperature, function(data){
+  $.post('http://localhost:4567/temp?temperature='+thermostat._temperature, function(data){
   });
 }
 
