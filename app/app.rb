@@ -26,11 +26,19 @@ class Thermostat < Sinatra::Base
 
   get '/dummytemp' do
     headers 'Access-Control-Allow-Origin' => '*'
-    {userinfo: {temp: '23'}}.to_json
+    {userinfo: {temp: $temp, city: $city}}.to_json
   end
 
-  post 'dummytemp' do
-    $info = params[:temperature]
+  post '/dummytemp' do
+    p params[:temperature]
+    $temp = params[:temperature]
+    p $temp
+  end
+
+  post '/dummycity' do
+    p params[:city]
+    $city = params[:city]
+    p $city
   end
 
   # start the server if ruby file executed directly

@@ -3,6 +3,9 @@
 $(document).ready(function() {
   var thermostat = new Thermostat();
   // updateTemperature();
+  getTemp();
+  getCity();
+  // $("#slider").roundSlider("option", "value", startTemp);
 
   // $('#temperature-up').click(function() {
   //   thermostat.up();
@@ -18,11 +21,6 @@ $(document).ready(function() {
     thermostat.reset();
     // updateTemperature();
     updateSlider();
-  });
-
-  $('#testyo').click(function(e) {
-    e.preventDefault();
-    getTemp();
   });
 
   $('#powersaving-switch').click(function() {
@@ -51,11 +49,24 @@ $(document).ready(function() {
     e.preventDefault();
     var city = $('input[name="city"]').val();
     displayWeather(city);
+    $.post('http://localhost:4567/dummycity?&city='+city, function(data){
+    });
   });
+
 
   function getTemp(){
     $.getJSON('http://localhost:4567/dummytemp', function(data){
-      return data.userinfo.temp
+      $("#slider").roundSlider("option", "value", data.userinfo.temp);
+      thermostat._temperature = data.userinfo.temp;
+    });
+  }
+
+  function getCity(){
+    $.getJSON('http://localhost:4567/dummytemp', function(data){
+      $('.city').val(data.userinfo.city);
+      if (data.userinfo.city != undefined){
+        $('#weather-submit').click()
+      };
     });
   }
 
@@ -73,12 +84,13 @@ $(document).ready(function() {
 $("#slider").roundSlider({
     radius: 200,
     width: 50,
-    max: 50,
+    min: 5,
+    max: 35,
     startAngle: 330,
     handleSize: "+8",
     handleShape: "dot",
     sliderType: "min-range",
-    value: getTemp(),
+    value: 20,
     drag: updateTemp
 });
 
@@ -91,10 +103,12 @@ function updateTemp(e) {
     thermostat._temperature = e.value;
   };
   // updateTemperature();
-  console.log(thermostat._temperature);
-  console.log(thermostat.energyUsage());
+  // console.log(thermostat._temperature);
+  // console.log(thermostat.energyUsage());
   updateSlider();
   updateColor();
+  $.post('http://localhost:4567/dummytemp?temperature='+thermostat._temperature, function(data){
+  });
 }
 
 function updateSlider() {
@@ -113,6 +127,5 @@ function updateColor() {
 };
 
 $('input[type=submit]').hide();
-
 
 });
