@@ -20,6 +20,11 @@ $(document).ready(function() {
     updateSlider();
   });
 
+  $('#testyo').click(function(e) {
+    e.preventDefault();
+    getTemp();
+  });
+
   $('#powersaving-switch').click(function() {
     thermostat.powerSavingSwitch();
     if (thermostat._powerSavingMode === false) {
@@ -48,6 +53,12 @@ $(document).ready(function() {
     displayWeather(city);
   });
 
+  function getTemp(){
+    $.getJSON('http://localhost:4567/dummytemp', function(data){
+      return data.userinfo.temp
+    });
+  }
+
   function displayWeather(city) {
     var url = "http://api.openweathermap.org/data/2.5/weather?q=" + city;
     var token = "&appid=a2f6ade05ee1433ae21b182c6848bfe4";
@@ -67,7 +78,7 @@ $("#slider").roundSlider({
     handleSize: "+8",
     handleShape: "dot",
     sliderType: "min-range",
-    value: 20,
+    value: getTemp(),
     drag: updateTemp
 });
 
