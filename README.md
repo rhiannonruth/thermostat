@@ -8,3 +8,8 @@ Instructions
 * Create local psql database called thermostat_test
 * From the root directory in the command line, run Sinatra using ```ruby app/app.rb```
 * Open index.html in your browser
+
+Note
+-----
+* Always starts at 5 - shouldn't be able to go below 10
+* Need to add PSM on/off to saved params
